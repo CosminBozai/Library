@@ -1,5 +1,6 @@
 const table = document.getElementById("table");
 const addBtn = document.getElementById("add-book");
+const form = document.getElementById("form");
 const submitBtn = document.getElementById("submit");
 const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
@@ -15,7 +16,11 @@ function Book(author, title, year, pages, status) {
   this.status = status;
 }
 
-// addBtn.addEventListener("click", addNewBook);
+addBtn.addEventListener("click", displayForm);
+
+function displayForm() {
+  form.style.display = "block";
+}
 
 submitBtn.addEventListener("click", addNewBook);
 
