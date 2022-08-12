@@ -6,6 +6,7 @@ const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
 const yearInput = document.getElementById("year");
 const pagesInput = document.getElementById("pages");
+
 let myLibrary = [];
 
 function Book(author, title, year, pages, status) {
@@ -29,7 +30,7 @@ function addNewBook(author, title, year, pages, status) {
   title = String(titleInput.value);
   year = String(yearInput.value);
   pages = String(pagesInput.value);
-  status = String();
+  status = String(document.querySelector('input[name="status"]:checked').value);
   let x = new Book(author, title, year, pages, status);
   myLibrary.push(x);
   x.ID = myLibrary.indexOf(x);
