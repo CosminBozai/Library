@@ -10,7 +10,26 @@ th {
 
 #add-book {
   margin-top: 20px;
+}
+
+#add-book,
+#submit {
   padding: 6px 14px;
   font-size: 16px;
   cursor: pointer;
+}
+
+form {
+  font-size: 1.15rem;
+}
+
+fieldset {
+  margin: 10px 0;
+  max-width: 350px;
+}
+
+.details div {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
 }

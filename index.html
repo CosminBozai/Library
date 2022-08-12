@@ -19,6 +19,45 @@
         <th>Status</th>
       </tr>
     </table>
+
     <button id="add-book">Add Book</button>
+
+    <form action="" method="" class="">
+      <fieldset class="details">
+        <div class="row">
+          <label for="author">Author:</label>
+          <input type="text" name="author" id="author" />
+        </div>
+        <div class="row">
+          <label for="title">Title:</label>
+          <input type="text" name="title" id="title" />
+        </div>
+        <div class="row">
+          <label for="year">Year Published:</label>
+          <input type="text" name="year" id="year" />
+        </div>
+        <div class="row">
+          <label for="pages">Nr. of Pages:</label>
+          <input type="text" name="pages" id="pages" />
+        </div>
+        <div></div>
+      </fieldset>
+
+      <fieldset class="radio">
+        <legend>Have you read this book?</legend>
+
+        <div>
+          <input type="radio" id="read" name="status" value="yes" />
+          <label for="read">Yes</label>
+        </div>
+
+        <div>
+          <input type="radio" id="not-read" name="status" value="no" />
+          <label for="not-read">No</label>
+        </div>
+      </fieldset>
+
+      <button id="submit" type="submit">Submit</button>
+    </form>
   </body>
 </html>
