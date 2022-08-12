@@ -1,6 +1,10 @@
 const table = document.getElementById("table");
 const addBtn = document.getElementById("add-book");
-
+const submitBtn = document.getElementById("submit");
+const authorInput = document.getElementById("author");
+const titleInput = document.getElementById("title");
+const yearInput = document.getElementById("year");
+const pagesInput = document.getElementById("pages");
 let myLibrary = [];
 
 function Book(author, title, year, pages, status) {
@@ -11,14 +15,16 @@ function Book(author, title, year, pages, status) {
   this.status = status;
 }
 
-addBtn.addEventListener("click", addNewBook);
+// addBtn.addEventListener("click", addNewBook);
+
+submitBtn.addEventListener("click", addNewBook);
 
 function addNewBook(author, title, year, pages, status) {
-  author = String(prompt("Author:"));
-  title = String(prompt("Title:"));
-  year = String(prompt("Year:"));
-  pages = String(prompt("Pages:"));
-  status = String(prompt("Status:"));
+  author = String(authorInput.value);
+  title = String(titleInput.value);
+  year = String(yearInput.value);
+  pages = String(pagesInput.value);
+  status = String();
   let x = new Book(author, title, year, pages, status);
   myLibrary.push(x);
   x.ID = myLibrary.indexOf(x);
