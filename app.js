@@ -41,7 +41,6 @@ function addNewBook(author, title, year, pages, status) {
   status = String(document.querySelector('input[name="status"]:checked').value);
   let x = new Book(author, title, year, pages, status);
   myLibrary.push(x);
-  x.ID = myLibrary.indexOf(x);
   deleteTableElements();
   displayBook();
 }
@@ -51,15 +50,13 @@ function displayBook() {
   // makes the table always updated
   for (i = 0; i < myLibrary.length; i++) {
     let row = tbody.insertRow(-1);
-    let ID = row.insertCell(0);
-    let author = row.insertCell(1);
-    let title = row.insertCell(2);
-    let year = row.insertCell(3);
-    let pages = row.insertCell(4);
-    let status = row.insertCell(5);
+    let author = row.insertCell(0);
+    let title = row.insertCell(1);
+    let year = row.insertCell(2);
+    let pages = row.insertCell(3);
+    let status = row.insertCell(4);
     addRemoveBtn(row, i);
 
-    ID.innerHTML = myLibrary[i].ID;
     author.innerHTML = myLibrary[i].author;
     title.innerHTML = myLibrary[i].title;
     year.innerHTML = myLibrary[i].year;
@@ -69,7 +66,7 @@ function displayBook() {
 }
 
 function addRemoveBtn(row, id) {
-  let actions = row.insertCell(6);
+  let actions = row.insertCell(5);
   let removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-button");
   removeBtn.textContent = "delete";
