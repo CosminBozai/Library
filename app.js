@@ -57,28 +57,56 @@ function displayBook() {
     let status = row.insertCell(4);
     addRemoveBtn(row, i);
 
-    author.innerHTML = myLibrary[i].author;
-    title.innerHTML = myLibrary[i].title;
-    year.innerHTML = myLibrary[i].year;
-    pages.innerHTML = myLibrary[i].pages;
-    status.innerHTML = myLibrary[i].status;
+    author.textContent = myLibrary[i].author;
+    title.textContent = myLibrary[i].title;
+    year.textContent = myLibrary[i].year;
+    pages.textContent = myLibrary[i].pages;
+    // status.textContent = myLibrary[i].status;
+    addStatusBtn(status, i);
   }
 }
 
-function addRemoveBtn(row, id) {
+function addRemoveBtn(row, i) {
   let actions = row.insertCell(5);
   let removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-button");
   removeBtn.textContent = "delete";
-  removeBtn.setAttribute("data-id", id);
+  removeBtn.setAttribute("data-id", i);
+  removeBtn.setAttribute("remove-button", "remove-button");
   actions.appendChild(removeBtn);
-  removeBtn.addEventListener("click", (e) => {
-    deleteBook(e.target.getAttribute("data-id"));
-  });
 }
+
+tbody.addEventListener("click", (e) => {
+  if (e.target.getAttribute("remove-button") === "remove-button") {
+    deleteBook(e.target.getAttribute("data-id"));
+  }
+});
 
 function deleteBook(i) {
   myLibrary.splice(i, 1);
+  deleteTableElements();
+  displayBook();
+}
+function addStatusBtn(status, i) {
+  let statusBtn = document.createElement("button");
+  statusBtn.textContent = myLibrary[i].status;
+  statusBtn.setAttribute("status-button", "status-button");
+  statusBtn.setAttribute("data-id", i);
+  status.appendChild(statusBtn);
+}
+
+tbody.addEventListener("click", (e) => {
+  if (e.target.getAttribute("status-button") === "status-button") {
+    changeStatus(e.target.getAttribute("data-id"));
+  }
+});
+
+function changeStatus(i) {
+  if (myLibrary[i].status === "Not read") {
+    myLibrary[i].status = "Read";
+  } else if (myLibrary[i].status === "Read") {
+    myLibrary[i].status = "Not read";
+  }
   deleteTableElements();
   displayBook();
 }
