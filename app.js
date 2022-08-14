@@ -57,7 +57,7 @@ function displayBook() {
     let year = row.insertCell(3);
     let pages = row.insertCell(4);
     let status = row.insertCell(5);
-    addRemoveBtn(row);
+    addRemoveBtn(row, i);
 
     ID.innerHTML = myLibrary[i].ID;
     author.innerHTML = myLibrary[i].author;
@@ -68,10 +68,20 @@ function displayBook() {
   }
 }
 
-function addRemoveBtn(row) {
+function addRemoveBtn(row, id) {
   let actions = row.insertCell(6);
   let removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-button");
   removeBtn.textContent = "delete";
+  removeBtn.setAttribute("data-id", id);
   actions.appendChild(removeBtn);
+  removeBtn.addEventListener("click", (e) => {
+    deleteBook(e.target.getAttribute("data-id"));
+  });
+}
+
+function deleteBook(i) {
+  myLibrary.splice(i, 1);
+  deleteTableElements();
+  displayBook();
 }
