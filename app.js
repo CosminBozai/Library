@@ -62,10 +62,4 @@ function addRemoveBtn(row) {
   removeBtn.classList.add("remove-button");
   removeBtn.textContent = "delete";
   actions.appendChild(removeBtn);
-
-  removeBtn.addEventListener("click", deleteBook);
-}
-
-function deleteBook() {
-  myLibrary.splice(0);
 }
