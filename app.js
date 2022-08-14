@@ -1,11 +1,10 @@
-const table = document.getElementById("table");
 const form = document.getElementById("form");
 const submitBtn = document.getElementById("submit");
 const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
 const yearInput = document.getElementById("year");
 const pagesInput = document.getElementById("pages");
-
+const tbody = document.querySelector("tbody");
 const addBtn = document.getElementById("add-book");
 
 let myLibrary = [];
@@ -24,6 +23,14 @@ function displayForm() {
   form.style.display = "block";
 }
 
+// Deleting table elements before adding a new book
+// so the iteration of myLibrary doesn't display duplicates in the table
+function deleteTableElements() {
+  while (tbody.childElementCount > 1) {
+    tbody.removeChild(tbody.lastChild);
+  }
+}
+
 submitBtn.addEventListener("click", addNewBook);
 
 function addNewBook(author, title, year, pages, status) {
@@ -35,25 +42,30 @@ function addNewBook(author, title, year, pages, status) {
   let x = new Book(author, title, year, pages, status);
   myLibrary.push(x);
   x.ID = myLibrary.indexOf(x);
+  deleteTableElements();
   displayBook();
 }
 
 function displayBook() {
-  let row = table.insertRow(-1);
-  let ID = row.insertCell(0);
-  let author = row.insertCell(1);
-  let title = row.insertCell(2);
-  let year = row.insertCell(3);
-  let pages = row.insertCell(4);
-  let status = row.insertCell(5);
-  addRemoveBtn(row);
+  // Iterating through myLibrary every time a book is added or removed
+  // makes the table always updated
+  for (i = 0; i < myLibrary.length; i++) {
+    let row = tbody.insertRow(-1);
+    let ID = row.insertCell(0);
+    let author = row.insertCell(1);
+    let title = row.insertCell(2);
+    let year = row.insertCell(3);
+    let pages = row.insertCell(4);
+    let status = row.insertCell(5);
+    addRemoveBtn(row);
 
-  ID.innerHTML = myLibrary[myLibrary.length - 1].ID;
-  author.innerHTML = myLibrary[myLibrary.length - 1].author;
-  title.innerHTML = myLibrary[myLibrary.length - 1].title;
-  year.innerHTML = myLibrary[myLibrary.length - 1].year;
-  pages.innerHTML = myLibrary[myLibrary.length - 1].pages;
-  status.innerHTML = myLibrary[myLibrary.length - 1].status;
+    ID.innerHTML = myLibrary[i].ID;
+    author.innerHTML = myLibrary[i].author;
+    title.innerHTML = myLibrary[i].title;
+    year.innerHTML = myLibrary[i].year;
+    pages.innerHTML = myLibrary[i].pages;
+    status.innerHTML = myLibrary[i].status;
+  }
 }
 
 function addRemoveBtn(row) {
