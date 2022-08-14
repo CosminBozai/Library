@@ -1,11 +1,12 @@
 const table = document.getElementById("table");
-const addBtn = document.getElementById("add-book");
 const form = document.getElementById("form");
 const submitBtn = document.getElementById("submit");
 const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
 const yearInput = document.getElementById("year");
 const pagesInput = document.getElementById("pages");
+
+const addBtn = document.getElementById("add-book");
 
 let myLibrary = [];
 
@@ -45,6 +46,7 @@ function displayBook() {
   let year = row.insertCell(3);
   let pages = row.insertCell(4);
   let status = row.insertCell(5);
+  addRemoveBtn(row);
 
   ID.innerHTML = myLibrary[myLibrary.length - 1].ID;
   author.innerHTML = myLibrary[myLibrary.length - 1].author;
@@ -52,4 +54,18 @@ function displayBook() {
   year.innerHTML = myLibrary[myLibrary.length - 1].year;
   pages.innerHTML = myLibrary[myLibrary.length - 1].pages;
   status.innerHTML = myLibrary[myLibrary.length - 1].status;
+}
+
+function addRemoveBtn(row) {
+  let actions = row.insertCell(6);
+  let removeBtn = document.createElement("button");
+  removeBtn.classList.add("remove-button");
+  removeBtn.textContent = "delete";
+  actions.appendChild(removeBtn);
+
+  removeBtn.addEventListener("click", deleteBook);
+}
+
+function deleteBook() {
+  myLibrary.splice(0);
 }
