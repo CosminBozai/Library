@@ -9,12 +9,14 @@ const addBtn = document.getElementById("add-book");
 
 let myLibrary = [];
 
-function Book(author, title, year, pages, status) {
-  this.author = author;
-  this.title = title;
-  this.year = year;
-  this.pages = pages;
-  this.status = status;
+class Book {
+  constructor(author, title, year, pages, status) {
+    this.author = author;
+    this.title = title;
+    this.year = year;
+    this.pages = pages;
+    this.status = status;
+  }
 }
 
 addBtn.addEventListener("click", displayForm);
